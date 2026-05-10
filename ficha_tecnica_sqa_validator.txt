@@ -1,0 +1,31 @@
+NOMBRE:           sqa_validator
+VERSIÓN:          1.0.2
+PROPIETARIO:      SQA — área de Calidad de Datos
+TIPO:             Librería Python interna (.whl)
+DISTRIBUCIÓN:     Azure Artifacts (feed privado)
+ENTORNO TARGET:   Microsoft Fabric (PySpark)
+
+PROPÓSITO:
+Validar la integridad de datos entre origen (BD) y destino 
+(Azure Storage) en procesos de ingesta. Compara conteos, 
+nulos, tipos de datos y aplica reglas de negocio.
+
+DEPENDENCIAS EXTERNAS:
+- pydantic >= 2.0       (validación de modelos)
+- pydantic-settings >= 2.0  (lectura de variables)
+- PySpark               (ya provisto por Fabric)
+
+PERMISOS REQUERIDOS:
+- Lectura de tablas Delta del Lakehouse
+- Lectura de archivos CSV/Parquet de Azure Storage
+- Escritura de reportes JSON en /lakehouse/default/Files/
+
+DATOS QUE PROCESA:
+- Solo lee metadatos: conteos, tipos, nulos
+- NO transmite datos fuera del entorno Fabric
+- NO almacena credenciales
+
+DATOS QUE NO PROCESA:
+- No accede a contenido sensible
+- No exporta datos a sistemas externos
+- No establece conexiones de red salientes
